@@ -83,6 +83,8 @@ DATABASES = {
     }
 }
 
+MEDIA_ROOT = '/home/aliaksandr/PycharmProjects/musicApp/images/2015//'
+MEDIA_URL = '/images/2015/'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
