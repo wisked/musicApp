@@ -1,0 +1,39 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Music Store</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/foundation.css' %}">
+        <script src="{% static 'js/vendor/jquery.js' %}"></script>
+        <script src="{% static 'js/foundation.min.js' %}"></script>
+    </title>
+</head>
+<body>
+
+<nav class="top-bar" data-topbar role="navigation">
+    <ul class="title-area">
+        <li class="name">
+            <h1><a href="{% url 'musicStore:index' %}">Home</a></h1>
+        </li>
+    </ul>
+    <ul class="right    ">
+        {% if username %}
+             <li><a href="{% url 'auth:logout' %}">Выйти ({{ username }})</a></li>
+        {% else %}
+            <li><a href="{% url 'auth:login' %}">Войти</a> </li>
+         {% endif %}
+    </ul>
+</nav>
+<hr>
+
+
+
+<div class="row" style="background-color: azure"/>
+    {% block albumDetails %}{% endblock %}
+    {% block artistInformation %}{% endblock %}
+    {% block index %}{% endblock %}
+    {% block login %}{% endblock %}
+</div>
+</body>
+</html>

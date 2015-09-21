@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -38,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'musicStore',
+    'loginsys',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -83,8 +85,6 @@ DATABASES = {
     }
 }
 
-MEDIA_ROOT = '/home/aliaksandr/PycharmProjects/musicApp/images/2015//'
-MEDIA_URL = '/images/2015/'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
@@ -103,4 +103,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
-STATIC_URL = '/static/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'images/2015')
+MEDIA_URL = '/images/2015/'
+
+STATIC_URL = '/images/'
+STATIC_ROOT = '/home/aliaksandr/PycharmProjects/musicApp/images/2015/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+    'var/www/static',
+)

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+
+{% block login %}
+    <div class="large-offset-2 large-7 columns">
+        <form action="{% url 'auth:register' %}" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input class="button round expand" type="submit" value="Зарегистрироваться">
+        </form>
+    </div>
+{% endblock %}

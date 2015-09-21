@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block albumDetails %}
+
+
+{% if album %}
+    <img src="{% static '/home/aliaksandr/PycharmProjects/musicApp/images/2015/Appetite_for_Destruction.png' %}" height="200" width="250">
+    <h4>Название альбома:</h4><p>{{ album.title }}</p>
+    <h4>Дата релиза:</h4><p>{{ album.release_date }}</p>
+    <h4>Описание:</h4><p>{{ album.describe }}</p>
+    <h4>Рейтинг:</h4><p>{{ album.album_rate }}</p>
+    <h4>Рейтинг пользователей:</h4>
+    <p>{{ album.user_rate }}</p>
+    <h1><a href="{% url 'musicStore:addLike' album.id%}" title="Голосовать">+1</a></h1>
+
+{% endif %}
+
+<hr>
+    {% if album_comments %}
+        <div class=" large-offset-1 large-8 columns">
+        {% for album_comment in album_comments %}
+            <p>{{ album_comment.comment }}</p>
+        {% endfor %}
+{#        </div>#}
+    {% endif %}
+
+
+{#<a href="#" class="button round">comments</a>#}
+
+    {% if username %}
+        <form action="{% url 'musicStore:addComment' album.id %}" method="post">
+            {% csrf_token %}
+            {{ form  }}
+            <input type="submit" class="button expand" VALUE="Коммент">
+        </form>
+    {% endif %}
+
+</div>
+
+{% endblock %}
+

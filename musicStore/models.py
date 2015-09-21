@@ -23,8 +23,26 @@ class Album(models.Model):
     describe = models.TextField('album description', blank=True)
     release_date = models.DateField()
     image = models.ImageField(upload_to='images/%Y')
-    album_rate = models.IntegerField(default=0)
+    album_rate = models.FloatField(default=0)
+    user_rate = models.PositiveIntegerField(default=0)
     date_add = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return self.title
+
+    # def max_rate(self):
+    #     rate = self.album_rate
+    #     if rate > 10:
+    #         rate = 10
+    #     return rate
+
+
+class Comments(models.Model):
+    class Meta:
+        db_table = 'comments'
+    album = models.ForeignKey(Album)
+    comment = models.TextField('Добавить комментарий')
+
+    def __str__(self):
+        line = self.comment[:10]
+        return line

@@ -15,8 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls import static
+
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^musicstore/', include('musicStore.urls')),
-]
+    url(r'^musicstore/', include('musicStore.urls', namespace='musicStore')),
+    url(r'^auth/', include('loginsys.urls', namespace='auth')),
+]  #+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,8 @@
+{% if comment %}
+    {% for c in comment %}
+        <div>
+            <textarea> {{ c.comment }}</textarea>
+        </div>
+    {% endfor %}
+
+{% endif %}
