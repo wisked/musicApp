@@ -9,7 +9,7 @@ class Artist(models.Model):
     beginning = models.DateField('carier start')
     end = models.CharField('carier end', max_length=50)
     biography = models.TextField(blank=True)
-    photo = models.ImageField(upload_to='photo/%Y')
+    photo = models.ImageField(upload_to='artist')
     artist_rate = models.IntegerField(default=0)
     date_create = models.DateField(auto_now=True)
 
@@ -22,7 +22,7 @@ class Album(models.Model):
     title = models.CharField(max_length=50)
     describe = models.TextField('album description', blank=True)
     release_date = models.DateField()
-    image = models.ImageField(upload_to='images/%Y')
+    image = models.ImageField(upload_to='albums')
     album_rate = models.FloatField(default=0)
     user_rate = models.PositiveIntegerField(default=0)
     date_add = models.DateField(auto_now_add=True)

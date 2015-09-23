@@ -1,4 +1,44 @@
-{% for album in albums %}
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block Albums %}
 
-    <p>{{ album.title }}</p>
+
+<div class="row">
+{% for album in albums %}
+    <a href="{% url 'musicStore:albumDetails' album.id %}"><img src="{% static album.image.url %}"> </a>
+    <h4>Название альбома:</h4><p>{{ album.title }}</p>
+    <h4>Рейтинг:</h4><p>{{ album.album_rate }}</p>
+    <h4>Рейтинг пользователей:</h4>
+    <p>{{ album.user_rate }}</p>
 {% endfor %}
+</div>
+
+
+
+
+<div class="row">
+    <div class="large-3 large-offset-5 columns">
+        <ul class="pagination">
+            {% if albums.has_previous %}
+                <li class="arrow"><a href="/page/{{ albums.previous_page_number }}">&laquo;</a> </li>
+            {% else %}
+                <li class="arrow unavailable"><a href="#">&laquo;</a></li>
+            {% endif %}
+
+            {% for page in username.paginator.page_range %}
+                {% if page == albums.number %}
+                    <li class="current"><a href="/page/{{ page }}">{{ page }}</a> </li>
+                {% else %}
+                    <li><a href="/page/{{ page }}">{{ page }}</a> </li>
+                {% endif %}
+            {% endfor %}
+            {% if albums.has_next %}
+                <li class="arrow"><a href="/page/{{ albums.next_page_number }}">&raquo;</a> </li>
+            {% else %}
+                <li class="arrow unavailable"><a href="#">&raquo;</a> </li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+
+{% endblock %}

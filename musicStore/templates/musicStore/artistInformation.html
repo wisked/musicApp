@@ -3,7 +3,7 @@
 
 {% block artistInformation %}
 
-    <img src="{{ artist.photo.url }}" width="450" height="400"/>
+    <img src="{% static artist.photo.url %}" width="450" height="400"/>
     <h3>Имя:</h3><p>{{ artist.name }}</p>
     <h3>Страна:</h3><p>{{ artist.country }}</p>
 {#    <h3>Жанр:</h3><p>{{ artist.country }}</p>#}
@@ -12,11 +12,11 @@
     <h3>Биография:</h3><p>{{ artist.biography }}</p>
 
 
-<div class="large-offset-1 large-8 columns">
+<div class="large-offset-1 large-5 columns">
     {% if albums %}
         <h3>Альбомы:</h3>
         {% for album in albums %}
-            <a href="{% url 'musicStore:albumDetails' album.id %}"><img src="{{ album.image.url }}" width="150" height="150"></a><p>{{ album.title }}</p>
+            <a href="{% url 'musicStore:albumDetails' album.id %}"><img src="{% static album.image.url %}" width="150" height="150"></a><p>{{ album.title }}</p>
         {% endfor %}
     {% endif %}
 </div>

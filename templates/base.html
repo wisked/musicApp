@@ -24,16 +24,21 @@
             <li><a href="{% url 'auth:login' %}">Войти</a> </li>
          {% endif %}
     </ul>
+
 </nav>
+
 <hr>
 
 
 
-<div class="row" style="background-color: azure"/>
+<div class="row"/>
     {% block albumDetails %}{% endblock %}
     {% block artistInformation %}{% endblock %}
     {% block index %}{% endblock %}
     {% block login %}{% endblock %}
+    {% block Albums %}{% endblock %}
 </div>
+
+
 </body>
 </html>

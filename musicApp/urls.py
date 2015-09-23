@@ -14,9 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
 from django.conf.urls import include, url
-from django.contrib import admin
+from django.contrib import admin, staticfiles
 from django.conf import settings
 from django.conf.urls import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 
 urlpatterns = [
@@ -24,3 +25,6 @@ urlpatterns = [
     url(r'^musicstore/', include('musicStore.urls', namespace='musicStore')),
     url(r'^auth/', include('loginsys.urls', namespace='auth')),
 ]  #+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# urlpatterns += staticfiles_urlpatterns()
+# urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

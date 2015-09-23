@@ -3,8 +3,10 @@
 {% block albumDetails %}
 
 
+
 {% if album %}
-    <img src="{% static '/home/aliaksandr/PycharmProjects/musicApp/images/2015/Appetite_for_Destruction.png' %}" height="200" width="250">
+{#    <img src="{% static album.image.url %}" height="200" width="250">#}
+    <img src="{% static album.image.url %}" height="200" width="250">
     <h4>Название альбома:</h4><p>{{ album.title }}</p>
     <h4>Дата релиза:</h4><p>{{ album.release_date }}</p>
     <h4>Описание:</h4><p>{{ album.describe }}</p>

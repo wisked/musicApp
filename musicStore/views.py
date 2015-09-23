@@ -4,6 +4,7 @@ from .models import *
 from .forms import *
 from django.core.context_processors import csrf
 from django.contrib import auth
+from django.core.paginator import Paginator
 # Create your views here.
 
 
@@ -35,9 +36,11 @@ def artistInformation(request, pk):
     return render(request, 'musicStore/artistInformation.html', {'artist': artist, 'albums': albums, 'username': username})
 
 
-def allAlbums(request):
+def allAlbums(request, page_number=1):
+    # args = {}
     albums = Album.objects.all()
-    return render_to_response('musicStore/allAlbums.html', {'albums': albums, 'username': auth.get_user(request).username})
+    current_page = Paginator(albums, 1)
+    return render_to_response('musicStore/allAlbums.html', {'albums': current_page.page(page_number), 'username': auth.get_user(request)})
 
 
 # def albumDetails(request, pk):
