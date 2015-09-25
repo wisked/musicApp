@@ -11,15 +11,16 @@
     <h3>Окончание карьеры:</h3><p>{{ artist.end }}</p>
     <h3>Биография:</h3><p>{{ artist.biography }}</p>
 
-
-<div class="large-offset-1 large-5 columns">
+<br>
+<div class="large-offset-1 large-8 columns">
     {% if albums %}
-        <h3>Альбомы:</h3>
+        <h3 class="text-center">Альбомы:</h3>
         {% for album in albums %}
-            <a href="{% url 'musicStore:albumDetails' album.id %}"><img src="{% static album.image.url %}" width="150" height="150"></a><p>{{ album.title }}</p>
+            <a href="{% url 'musicStore:albumDetails' album.id %}"><img src="{% static album.image.url %}" width="150" height="150" title="{{ album.title }}"></a>
+{#            <p>{{ album.title }}</p>#}
         {% endfor %}
     {% endif %}
 </div>
-
+<hr class="large-offset-2 large-6">
 
 {% endblock %}

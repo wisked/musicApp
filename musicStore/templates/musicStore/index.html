@@ -4,12 +4,12 @@
 
 {#    <link rel="stylesheet" type="text/css" href="{% static 'foundation-5.5.2/foundation.css' %}"/>#}
 
-<div>
+<ul class="small-block-grid-3">
     {% for artist in artists %}
-        <a href="{% url 'musicStore:artistInformation' artist.id %}"><img src="{% static artist.photo.url %}" width="180">{{ artist.name }}</a>
-        <p class="large-only-text-center">{{ artist.name }}</p>
+        <li><a href="{% url 'musicStore:artistInformation' artist.id %}"><img src="{% static artist.photo.url %}" width="280"></a>
+        <p class="text-center">{{ artist.name }}</p></li>
     {% endfor %}
 
-</div>
+</ul>
 
 {% endblock %}

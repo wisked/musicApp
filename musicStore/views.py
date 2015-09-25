@@ -23,9 +23,9 @@ class IndexView(generic.ListView):
         return Artist.objects.order_by('date_create')[:10]
 
 
-def searching(request, l):
+def searching(request, st):
     args = {}
-    args['artists'] = Artist.objects.filter(name__startswith=l)
+    args['artists'] = Artist.objects.filter(name__startswith=st)
     return render_to_response('musicStore/searching.html', args)
 
 
@@ -38,8 +38,8 @@ def artistInformation(request, pk):
 
 def allAlbums(request, page_number=1):
     # args = {}
-    albums = Album.objects.all()
-    current_page = Paginator(albums, 1)
+    albums = Album.objects.order_by('-user_rate')
+    current_page = Paginator(albums, 5)
     return render_to_response('musicStore/allAlbums.html', {'albums': current_page.page(page_number), 'username': auth.get_user(request)})
 
 
@@ -54,7 +54,7 @@ def comments(request, pk):
     return render(request, 'musicStore/comments.html', {'comment': comment})
 
 
-def albumDetails(request, pk):
+def albumDetails(request, pk, page_number=1):
     comment_form = CommentForm
     args = {}
     args.update(csrf(request))
@@ -62,6 +62,8 @@ def albumDetails(request, pk):
     args['album_comments'] = Comments.objects.filter(album_id=pk)
     args['form'] = comment_form
     args['username'] = auth.get_user(request).username
+    current_page = Paginator(args['album_comments'], 5)
+    args['comments'] = current_page.page(page_number)
     return render_to_response('musicStore/albumDetails.html', args)
 
 

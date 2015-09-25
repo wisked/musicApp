@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
-{% for artist in artists %}
-    <p>{{ artist.name }}</p>
-{% endfor %}
+<form action="{% url musicStore:searching %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+</form>

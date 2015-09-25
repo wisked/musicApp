@@ -17,13 +17,51 @@
             <h1><a href="{% url 'musicStore:index' %}">Home</a></h1>
         </li>
     </ul>
-    <ul class="right    ">
-        {% if username %}
-             <li><a href="{% url 'auth:logout' %}">Выйти ({{ username }})</a></li>
-        {% else %}
-            <li><a href="{% url 'auth:login' %}">Войти</a> </li>
-         {% endif %}
+
+    <section class="top-bar-section">
+    <!-- Right Nav Section -->
+    <ul class="left">
+        <li class="has-dropdown">
+            <a href="#">Навигация</a>
+            <ul class="dropdown">
+                <li><a href="">Альбомы</a></li>
+                <li><a href="#">Альбомы2</a> </li>
+            </ul>
+        </li>
     </ul>
+    <ul class="right">
+      {% if username %}
+          <li class="active"><a href="{% url 'auth:logout' %}">Выйти ({{ username }})</a></li>
+{#          <li><a href="{% url 'auth:logout' %}">Выйти ({{ username }})</a></li>#}
+      {% else %}
+          <li class="active"><a href="{% url 'auth:login' %}">Войти</a></li>
+{#          <li><a href="{% url 'auth:login' %}">Войти</a> </li>#}
+      {% endif %}
+    </ul>
+
+    <ul>
+        <li class="has-form">
+          <div class="row collapse">
+            <div class="large-8 small-9 columns">
+              <input type="text" placeholder="Find Stuff" name="search">
+            </div>
+            <div class="large-4 small-3 columns">
+              <a href="{% url 'musicStore:searching' %}" class="alert button expand">Search</a>
+            </div>
+          </div>
+        </li>
+    </ul>
+
+  </section>
+
+
+{#    <ul class="right">#}
+{#        {% if username %}#}
+{#             <li><a href="{% url 'auth:logout' %}">Выйти ({{ username }})</a></li>#}
+{#        {% else %}#}
+{#            <li><a href="{% url 'auth:login' %}">Войти</a> </li>#}
+{#         {% endif %}#}
+{#    </ul>#}
 
 </nav>
 
@@ -31,7 +69,7 @@
 
 
 
-<div class="row"/>
+<div class="row">
     {% block albumDetails %}{% endblock %}
     {% block artistInformation %}{% endblock %}
     {% block index %}{% endblock %}
