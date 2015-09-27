@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<nav class="top-bar" data-topbar role="navigation">
+<nav class="top-bar" data-topbar role="navigation" data-option="sticky_on: large">
     <ul class="title-area">
         <li class="name">
             <h1><a href="{% url 'musicStore:index' %}">Home</a></h1>
@@ -24,19 +24,20 @@
         <li class="has-dropdown">
             <a href="#">Навигация</a>
             <ul class="dropdown">
-                <li><a href="">Альбомы</a></li>
+                <li><a href="/albums/">Альбомы</a></li>
                 <li><a href="#">Альбомы2</a> </li>
             </ul>
         </li>
     </ul>
     <ul class="right">
+      <li><a href="/admin/">Админка</a> </li>
       {% if username %}
           <li class="active"><a href="{% url 'auth:logout' %}">Выйти ({{ username }})</a></li>
 {#          <li><a href="{% url 'auth:logout' %}">Выйти ({{ username }})</a></li>#}
       {% else %}
           <li class="active"><a href="{% url 'auth:login' %}">Войти</a></li>
-{#          <li><a href="{% url 'auth:login' %}">Войти</a> </li>#}
       {% endif %}
+
     </ul>
 
     <ul>
@@ -44,9 +45,10 @@
           <div class="row collapse">
             <div class="large-8 small-9 columns">
               <input type="text" placeholder="Find Stuff" name="search">
+                {% csrf_token %}
             </div>
             <div class="large-4 small-3 columns">
-              <a href="{% url 'musicStore:searching' %}" class="alert button expand">Search</a>
+              <a href="#" class="alert button expand">Search</a>
             </div>
           </div>
         </li>
@@ -64,7 +66,6 @@
 {#    </ul>#}
 
 </nav>
-
 <hr>
 
 

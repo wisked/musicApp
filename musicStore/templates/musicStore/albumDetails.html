@@ -27,12 +27,14 @@
 
 
     {% if username %}
+        <div class="row">
         <div class="large-9 columns">
             <form action="{% url 'musicStore:addComment' album.id %}" method="post">
                 {% csrf_token %}
                 {{ form  }}
                 <input type="submit" class="button expand" VALUE="Коммент">
             </form>
+        </div>
         </div>
     {% endif %}
 
